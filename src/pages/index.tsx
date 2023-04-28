@@ -1,12 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Header } from '@/components/header/Header'
+import { Carousel } from '@/components/carousel/Carousel'
+import { Data } from '@/utils/types'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+export default function Home({ products }: Data) {
   return (
     <>
       <Head>
@@ -15,9 +13,19 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <Header />
-      </main>
+      <Header />
+      <Carousel carouselSize={5} data={products} />
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const response = await fetch('https://dummyjson.com/products')
+  const { products }: Data = await response.json()
+
+  return {
+    props: {
+      products
+    }
+  }
 }
