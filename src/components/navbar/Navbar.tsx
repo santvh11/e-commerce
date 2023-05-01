@@ -1,24 +1,25 @@
 import { Button, Navbar as UiNavbar } from "@nextui-org/react"
 import NextLink from "next/link"
-import { Logo } from "../logo/Logo"
+import { Isologo } from "@/components/svgs/isologo/Isologo"
+import { SearchBar } from "@/components/search-bar/SearchBar"
+import { Isotipo } from "@/components/svgs/isotipo/Isotipo"
 
 export const Navbar = () => {
     return (
-        <UiNavbar isCompact variant="static">
+        <UiNavbar shouldHideOnScroll isBordered variant="floating">
             <UiNavbar.Brand>
-                <Logo />
+                <NextLink href="/">
+                    <UiNavbar.Content hideIn="xs">
+                        <Isologo />
+                    </UiNavbar.Content>
+                    <UiNavbar.Content showIn="xs">
+                        <Isotipo />
+                    </UiNavbar.Content>
+                </NextLink>
             </UiNavbar.Brand>
 
-            <UiNavbar.Content>
-                <UiNavbar.Link as={NextLink} href="/">
-                    Home
-                </UiNavbar.Link>
-                <UiNavbar.Link as={NextLink} href="/offers">
-                    Offers
-                </UiNavbar.Link>
-                <UiNavbar.Link as={NextLink} href="/about-us">
-                    About
-                </UiNavbar.Link>
+            <UiNavbar.Content css={{ w: "100%", ml: 20, mr: 10 }}>
+                <SearchBar data={[]} />
             </UiNavbar.Content>
 
             <UiNavbar.Content>
@@ -33,6 +34,6 @@ export const Navbar = () => {
                     </Button>
                 </UiNavbar.Item>
             </UiNavbar.Content>
-        </UiNavbar>
+        </UiNavbar >
     )
 }
