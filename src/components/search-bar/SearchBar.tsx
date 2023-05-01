@@ -18,7 +18,7 @@ export const SearchBar = ({ data }: Props) => {
     return (
         <Input
             clearable
-            contentLeft={<SearchIcon fill={theme?.colors.accents6.value} size={16} />}
+            contentLeft={<SearchIcon color={theme?.colors.accents6.value} size={16} />}
             contentLeftStyling={false}
             css={{
                 w: "100%",
