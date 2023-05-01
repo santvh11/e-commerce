@@ -4,8 +4,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Product } from '@/utils/types'
-import NextImage from 'next/image'
-import { Container, Image, useTheme, Text, Card } from '@nextui-org/react'
+import { Container, Image, useTheme, Text } from '@nextui-org/react'
 
 interface Props {
     data: Product[]
@@ -22,8 +21,7 @@ export const Banners = ({ data, carouselSize, title }: Props) => {
         <Image
           src={product.images.at(0) || ''}
           alt='Picture of the product'
-          width={500}
-          height={500}
+          css={{ objectFit: 'cover' }}
         />
       </Container>
     </SwiperSlide>
