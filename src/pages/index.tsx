@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Header } from '@/components/header/Header'
 import { Banners } from '@/components/banners/Banners'
 import { Data } from '@/utils/types'
+import { Carousel } from '@/components/carousel/Carousel'
 
 export default function Home ({ products }: Data) {
   return (
@@ -14,6 +15,7 @@ export default function Home ({ products }: Data) {
       </Head>
       <Header />
       <Banners title='Offers' carouselSize={5} data={products} />
+      <Carousel data={products} carouselSize={8} title='You may be interested in...' />
     </>
   )
 }
