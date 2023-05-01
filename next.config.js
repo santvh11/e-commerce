@@ -9,9 +9,9 @@ const nextConfig = {
         hostname: 'i.dummyjson.com',
         port: '',
         pathname: '/data/products/**'
-      },
-    ],
-  },
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig

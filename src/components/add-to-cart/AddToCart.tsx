@@ -1,5 +1,5 @@
 export const AddToCart = () => {
-    return (
-        <div>AddToCart</div>
-    )
+  return (
+    <div>AddToCart</div>
+  )
 }
