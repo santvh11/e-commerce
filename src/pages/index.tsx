@@ -1,22 +1,21 @@
 import Head from 'next/head'
-import { Header } from '@/components/header/Header'
-import { Banners } from '@/components/banners/Banners'
+import { Banners } from '@/components/Banners'
 import { Data } from '@/utils/types'
-import { Carousel } from '@/components/carousel/Carousel'
+import { Carousel } from '@/components/Carousel'
+import { Layout } from '@/components/Layout'
 
 export default function Home ({ products }: Data) {
   return (
-    <>
+    <Layout>
       <Head>
         <title>La Tiendita</title>
         <meta name='description' content='Is like Amazon but better' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/appLogo.png' />
       </Head>
-      <Header />
       <Banners title='Offers' carouselSize={5} data={products} />
       <Carousel data={products} carouselSize={8} title='You may be interested in...' />
-    </>
+    </Layout>
   )
 }
 

@@ -1,12 +1,12 @@
 import { Container } from '@nextui-org/react'
 import React from 'react'
-import { Header } from '../header/Header'
-import { Footer } from '../footer/Footer'
+import { Footer } from './Footer'
+import { Navbar } from './Navbar'
 
 export const Layout = ({ children }) => {
   return (
     <Container fluid css={{ pl: 0, pr: 0 }}>
-      <Header />
+      <Navbar />
       {children}
       <Footer />
     </Container>

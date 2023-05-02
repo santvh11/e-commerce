@@ -1,4 +1,4 @@
-import { Item } from '../item/Item'
+import { Item } from './Item'
 import { Product } from '@/utils/types'
 import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'

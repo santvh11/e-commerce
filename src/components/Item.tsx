@@ -1,14 +1,12 @@
 import { Product } from '@/utils/types'
-import { Button, Card, Row, Text, useTheme } from '@nextui-org/react'
+import { Card, Row, Text, useTheme } from '@nextui-org/react'
 import Link from 'next/link'
-import { QuantitySelector } from '../quantity-selector/QuantitySelector'
-import { useCart } from '@/hooks/useCart'
+import { AddToCart } from './AddToCart'
 interface Props {
     data: Product
 }
 export const Item = ({ data }: Props) => {
   const { theme } = useTheme()
-  const { addToCart, changeQuantity, quantity } = useCart(data)
 
   return (
     <Card css={{ w: '300px' }}>
@@ -21,15 +19,7 @@ export const Item = ({ data }: Props) => {
 
       <Card.Footer>
         <Row justify='space-around' align='center'>
-          {quantity
-            ? (
-              <QuantitySelector handleOnChange={changeQuantity} quantity={quantity} />
-              )
-            : (
-              <Button onClick={addToCart}>
-                Add to cart
-              </Button>
-              )}
+          <AddToCart data={data} />
           <Text h5>${data.price}</Text>
         </Row>
       </Card.Footer>

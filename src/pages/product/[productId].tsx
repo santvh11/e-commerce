@@ -1,8 +1,8 @@
-import { Footer } from '@/components/footer/Footer'
-import { Header } from '@/components/header/Header'
-import { Layout } from '@/components/layout/Layout'
+import { AddToCart } from '@/components/AddToCart'
+import { Layout } from '@/components/Layout'
+import { comments, questions } from '@/utils/dummyData'
 import { Product } from '@/utils/types'
-import { Button, Card, Col, Container, Grid, Image, Row, Spacer, Text, useTheme } from '@nextui-org/react'
+import { Button, Card, Col, Grid, Image, Row, Text, useTheme } from '@nextui-org/react'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import StarRatings from 'react-star-ratings'
@@ -10,32 +10,6 @@ import StarRatings from 'react-star-ratings'
 interface Props{
     product: Product
 }
-
-const comments = [
-  {
-    author: 'John',
-    rating: 4,
-    content: 'Is a very good product'
-  },
-  {
-    author: 'Anna',
-    rating: 5,
-    content: 'Is the best product'
-  }
-]
-
-const questions = [
-  {
-    author: 'John',
-    content: 'Do you deliver to Colombia?',
-    answers: [
-      {
-        author: 'James',
-        content: 'Yes, we do'
-      }
-    ]
-  }
-]
 
 const ProductPage = ({ product }: Props) => {
   const { theme } = useTheme()
@@ -45,6 +19,7 @@ const ProductPage = ({ product }: Props) => {
       <Head>
         <title>{product.title}</title>
         <meta name='description' content={product.description} />
+        <link rel='icon' href='/appLogo.png' />
       </Head>
       <Grid.Container justify='space-evenly' css={{ mt: 50 }}>
         <Grid>
@@ -91,6 +66,7 @@ const ProductPage = ({ product }: Props) => {
             ))}
           </Card>
         </Grid>
+
         <Grid>
           <Card css={{ bc: theme?.colors.accents0.value, w: '25vw', h: '50vh', p: 50, jc: 'space-between' }}>
             <Col>
@@ -111,21 +87,14 @@ const ProductPage = ({ product }: Props) => {
               <Text>
                 {product.description}
               </Text>
-
-              <Text h3>
-                ${product.price}
-              </Text>
             </Col>
 
-            <Row justify='space-around'>
-              <Button flat auto>
-                Add to Whislist
-              </Button>
-
-              <Button auto>
-                Add to Cart
-              </Button>
-            </Row>
+            <Card.Footer>
+              <Grid.Container justify='center' alignContent='center'>
+                <AddToCart data={product} />
+                <Button css={{ mt: 20 }}>Buy now</Button>
+              </Grid.Container>
+            </Card.Footer>
           </Card>
 
           <Card css={{ bc: theme?.colors.accents0.value, w: '25vw', mt: 25 }}>

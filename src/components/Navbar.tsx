@@ -1,15 +1,11 @@
-import { Avatar, Dropdown, Row, Text, Navbar as UiNavbar } from '@nextui-org/react'
+import { Avatar, Dropdown, Text, Navbar as UiNavbar } from '@nextui-org/react'
 import NextLink from 'next/link'
-import { Isologo } from '@/components/svgs/isologo/Isologo'
-import { SearchBar } from '@/components/search-bar/SearchBar'
-import { Isotipo } from '@/components/svgs/isotipo/Isotipo'
-import { CartIcon } from '../svgs/cart-icon/CartIcon'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/redux/store'
+import { Isologo } from './svgs/Isologo'
+import { SearchBar } from './SearchBar'
+import { Isotipo } from './svgs/Isotipo'
+import { CartDropdown } from './CartDropdown'
 
 export const Navbar = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.items)
-
   return (
     <UiNavbar shouldHideOnScroll isBordered variant='floating'>
       <UiNavbar.Brand>
@@ -28,33 +24,7 @@ export const Navbar = () => {
       </UiNavbar.Content>
 
       <UiNavbar.Content gap={0}>
-        <Dropdown>
-          <Dropdown.Button
-            flat auto css={{
-              background: 'none',
-              '@xsMax': { pl: 7, pr: 7 }
-            }}
-          >
-            <CartIcon />
-          </Dropdown.Button>
-          <Dropdown.Menu aria-label='Static Actions'>
-            {cartItems.map((item, i) => (
-              <Dropdown.Item key={i}>
-
-                <NextLink href={'/product/' + item.id}>
-                  <Row justify='space-between' css={{ bc: 'none' }}>
-                    <Text>
-                      {item.title}
-                    </Text>
-                    <Text>
-                      {item.quantity}
-                    </Text>
-                  </Row>
-                </NextLink>
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
+        <CartDropdown />
 
         <Dropdown placement='bottom-right'>
           <UiNavbar.Item>

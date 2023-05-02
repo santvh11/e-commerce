@@ -1,6 +1,6 @@
 import { FormElement, Input, useTheme } from '@nextui-org/react'
 import { ChangeEvent, useState } from 'react'
-import { SearchIcon } from '../svgs/search-icon/SearchIcon'
+import { SearchIcon } from './svgs/SearchIcon'
 
 interface Props {
     data: any[]

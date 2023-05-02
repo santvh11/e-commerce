@@ -26,10 +26,6 @@ export const cartSlice = createSlice({
     addItemToCart: (state, action: PayloadAction<CartItem>) => {
       state.items.push(action.payload)
     },
-    deleteCartItem: (state, action: PayloadAction<number>) => {
-      const newItems = state.items.filter((item: CartItem) => item.id !== action.payload)
-      state.items = newItems
-    },
     changeCartItemQuantity: (state, action: PayloadAction<ChangeQuantityPayload>) => {
       let newItems
       if (action.payload.newQuantity === 0) {
@@ -48,6 +44,6 @@ export const cartSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addItemToCart, deleteCartItem, changeCartItemQuantity } = cartSlice.actions
+export const { addItemToCart, changeCartItemQuantity } = cartSlice.actions
 
 export default cartSlice.reducer
