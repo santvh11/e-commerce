@@ -8,7 +8,7 @@ handleOnChange: (newQuantity: number) => void
 
 export const QuantitySelector = ({ quantity, handleOnChange }: Props) => {
   return (
-    <Row>
+    <>
       <Button color='warning' css={{ mr: 10 }} size='sm' auto rounded onPress={() => handleOnChange(0)}>
         <TrashIcon />
       </Button>
@@ -21,6 +21,6 @@ export const QuantitySelector = ({ quantity, handleOnChange }: Props) => {
       <Button color='secondary' css={{ fontSize: 15 }} size='sm' auto rounded onPress={() => handleOnChange(quantity + 1)}>
         +
       </Button>
-    </Row>
+    </>
   )
 }
