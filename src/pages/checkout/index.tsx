@@ -1,20 +1,24 @@
 import { AddToCart } from '@/components/AddToCart'
 import { Layout } from '@/components/Layout'
 import { RootState } from '@/redux/store'
-import { Data, Product } from '@/utils/types'
+import { Product } from '@/utils/types'
 import { Button, Card, Col, Container, Grid, Image, Input, Row, Text, useTheme } from '@nextui-org/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
-export default function Success ({ products }: Data) {
+interface Props{
+    data: Product
+}
+
+const Checkout = () => {
   const { theme } = useTheme()
   const cartItems = useSelector((state: RootState) => state.cart.items)
 
   return (
-    <Layout data={products}>
+    <Layout>
       <Head>
-        <title>Congratulations!</title>
+        <title>Checkout</title>
         <meta name='description' content='Chekout' />
         <link rel='icon' href='/appLogo.png' />
       </Head>
@@ -23,26 +27,28 @@ export default function Success ({ products }: Data) {
         <Grid xs={12} sm={8} lg={9}>
           <Card css={{ bc: theme?.colors.background.value }} variant='bordered'>
             <Card.Header>
-              <Text h2>Summary</Text>
+              <Text h2>Checkout</Text>
 
             </Card.Header>
             <Card.Divider />
             <Card.Body>
               <Card css={{ bc: theme?.colors.background.value }}>
                 <Card.Body>
-                  <Input label='Full Name' value='Jhon Connor' readOnly bordered />
-                  <Input label='Email' placeholder='...' value='Jhon@example.com' css={{ mt: 20 }} readOnly bordered />
-                  <Input label='Address' placeholder='...' value='St 39 # 45' css={{ mt: 20 }} readOnly bordered />
-                  <Text css={{ mt: 20 }} h4>Your order will arrive in about: 5 days</Text>
+                  <Input label='Full Name' initialValue='Jhon Connor' />
+                  <Input label='Email' placeholder='...' initialValue='Jhon@example.com' css={{ mt: 20 }} />
+                  <Input label='Address' placeholder='...' initialValue='St 39 # 45' css={{ mt: 20 }} />
+                  <Input type='password' label='Card Number' placeholder='...' initialValue='1233213432345' css={{ mt: 20 }} />
+                  <Input type='month' label='Expiration Date' placeholder='...' css={{ mt: 20 }} />
+                  <Input type='month' label='Expiration Date' css={{ mt: 20 }} />
+                  <Input type='password' label='CVV' placeholder='***' initialValue='332' css={{ mt: 20 }} />
                 </Card.Body>
-
-                <Card.Footer>
-                  <Col>
-                    <Text>Any questions?</Text>
-                    <Button as={Link} href='/help' css={{ mt: 20 }}>Help!</Button>
-                  </Col>
-                </Card.Footer>
               </Card>
+              <Card.Divider />
+              <Card.Footer>
+                <Row justify='center'>
+                  <Button as={Link} href='/success'>Pay</Button>
+                </Row>
+              </Card.Footer>
             </Card.Body>
           </Card>
         </Grid>
@@ -50,7 +56,7 @@ export default function Success ({ products }: Data) {
         <Grid xs={12} sm={4} lg={3}>
           <Card>
             <Card.Header>
-              <Text h2>Your new items!</Text>
+              <Text h2>Cart</Text>
             </Card.Header>
 
             <Card.Body>
@@ -59,9 +65,10 @@ export default function Success ({ products }: Data) {
                   <Grid key={i}>
                     <Card variant='bordered'>
                       <Card.Body>
-                        <Row justify='space-between'>
+                        <Col>
                           <Text>{item.title}</Text>
-                        </Row>
+                          <AddToCart data={item} />
+                        </Col>
                       </Card.Body>
                     </Card>
                   </Grid>
@@ -76,13 +83,4 @@ export default function Success ({ products }: Data) {
   )
 }
 
-export async function getServerSideProps () {
-  const response = await fetch('https://dummyjson.com/products')
-  const { products }: Data = await response.json()
-
-  return {
-    props: {
-      products
-    }
-  }
-}
+export default Checkout

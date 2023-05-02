@@ -6,7 +6,7 @@ import { Layout } from '@/components/Layout'
 
 export default function Home ({ products }: Data) {
   return (
-    <Layout>
+    <Layout data={products}>
       <Head>
         <title>La Tiendita</title>
         <meta name='description' content='Is like Amazon but better' />
