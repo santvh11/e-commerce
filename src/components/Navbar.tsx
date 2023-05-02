@@ -4,8 +4,12 @@ import { Isologo } from './svgs/Isologo'
 import { SearchBar } from './SearchBar'
 import { Isotipo } from './svgs/Isotipo'
 import { CartDropdown } from './CartDropdown'
+import { Product } from '@/utils/types'
 
-export const Navbar = () => {
+interface Props {
+  data: Product[]
+}
+export const Navbar = ({ data }: Props) => {
   return (
     <UiNavbar shouldHideOnScroll isBordered variant='floating'>
       <UiNavbar.Brand>
@@ -20,7 +24,7 @@ export const Navbar = () => {
       </UiNavbar.Brand>
 
       <UiNavbar.Content css={{ w: '100%', ml: 20, mr: 10 }}>
-        <SearchBar data={[]} />
+        <SearchBar data={data} />
       </UiNavbar.Content>
 
       <UiNavbar.Content gap={0}>
